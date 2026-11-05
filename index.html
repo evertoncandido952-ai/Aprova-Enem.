@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aprova ENEM</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#4F46E5', // Indigo
+                        secondary: '#10B981', // Emerald
+                        darkbg: '#0F172A',
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome para ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-slate-900 text-slate-100 h-full flex flex-col antialiased selection:bg-primary selection:text-white">
+
+    <!-- CABEÇALHO -->
+    <header class="bg-slate-900/80 backdrop-blur-md border-b border-slate-800 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center space-x-3 cursor-pointer" onclick="switchTab('inicio')">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 to-emerald-500 flex items-center justify-center shadow-lg shadow-indigo-500/20">
+                    <i class="fa-solid fa-graduation-cap text-white text-lg"></i>
+                </div>
+                <div>
+                    <h1 class="font-bold text-lg tracking-tight text-white flex items-center gap-1.5">
+                        Aprova ENEM <span class="text-xs bg-indigo-500/20 text-indigo-400 font-semibold px-2 py-0.5 rounded-full border border-indigo-500/30">PWA</span>
+                    </h1>
+                    <p class="text-xs text-slate-400">Seu preparatório offline completo</p>
+                </div>
+            </div>
+            <div class="flex items-center space-x-2">
+                <button onclick="switchTab('perfil')" id="nav-btn-perfil" class="p-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 transition relative">
+                    <i class="fa-solid fa-user-gear"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main class="flex-1 max-w-7xl w-full mx-auto p-4 md:p-6 pb-24 overflow-y-auto">
+
+        <!-- ABA: INÍCIO / DASHBOARD -->
+        <section id="tab-inicio" class="space-y-6">
+            <!-- Boas-vindas -->
+            <div class="bg-gradient-to-r from-indigo-900/40 via-slate-800 to-emerald-900/30 p-6 rounded-3xl border border-indigo-500/20 shadow-xl relative overflow-hidden">
+                <div class="absolute right-0 top-0 translate-x-4 -translate-y-4 w-40 h-40 bg-indigo-500/10 rounded-full blur-2xl pointer-events-none"></div>
+                <div class="relative z-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                    <div>
+                        <span class="text-xs font-semibold uppercase tracking-wider text-emerald-400 bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20">Foco ENEM 2026</span>
+                        <h2 id="welcome-title" class="text-2xl md:text-3xl font-extrabold text-white mt-2">Olá, Estudante! 🎓</h2>
+                        <p class="text-slate-300 text-sm mt-1">Sua preparação está estruturada e pronta para o sucesso. Vamos avançar hoje?</p>
+                    </div>
+                    <button onclick="switchTab('materias')" class="bg-gradient-to-r from-indigo-600 to-indigo-700 hover:from-indigo-500 hover:to-indigo-600 text-white font-medium px-5 py-3 rounded-2xl shadow-lg shadow-indigo-600/30 transition flex items-center gap-2">
+                        <i class="fa-solid fa-book-open"></i> Explorar Matérias
+                    </button>
+                </div>
+            </div>
+
+            <!-- Cards de Acesso Rápido -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div onclick="switchTab('materias')" class="bg-slate-800/60 hover:bg-slate-800 border border-slate-700/60 p-5 rounded-2xl cursor-pointer transition group">
+                    <div class="w-12 h-12 rounded-xl bg-indigo-500/10 text-indigo-400 flex items-center justify-center text-xl mb-3 group-hover:scale-110 transition">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                    </div>
+                    <h3 class="font-semibold text-white">Guia de Aulas</h3>
+                    <p class="text-xs text-slate-400 mt-1">Todas as 4 áreas do ENEM com resumos</p>
+                </div>
+
+                <div onclick="switchTab('redacao')" class="bg-slate-800/60 hover:bg-slate-800 border border-slate-700/60 p-5 rounded-2xl cursor-pointer transition group">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xl mb-3 group-hover:scale-110 transition">
+                        <i class="fa-solid fa-pen-nib"></i>
+                    </div>
+                    <h3 class="font-semibold text-white">Redação 1000</h3>
+                    <p class="text-xs text-slate-400 mt-1">Treinador & 5 Competências oficiais</p>
+                </div>
+
+                <div onclick="switchTab('simulado')" class="bg-slate-800/60 hover:bg-slate-800 border border-slate-700/60 p-5 rounded-2xl cursor-pointer transition group">
+                    <div class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-xl mb-3 group-hover:scale-110 transition">
+                        <i class="fa-solid fa-stopwatch"></i>
+                    </div>
+                    <h3 class="font-semibold text-white">Simulado Expresso</h3>
+                    <p class="text-xs text-slate-400 mt-1">Questões práticas com gabarito</p>
+                </div>
+
+                <div onclick="switchTab('perfil')" class="bg-slate-800/60 hover:bg-slate-800 border border-slate-700/60 p-5 rounded-2xl cursor-pointer transition group">
+                    <div class="w-12 h-12 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center text-xl mb-3 group-hover:scale-110 transition">
+                        <i class="fa-solid fa-chart-line"></i>
+                    </div>
+                    <h3 class="font-semibold text-white">Meu Perfil</h3>
+                    <p class="text-xs text-slate-400 mt-1">Acompanhe seu progresso e metas</p>
+                </div>
+            </div>
+
+            <!-- Dica do Dia / Frase Motivacional -->
+            <div class="bg-slate-800/40 border border-slate-700/50 p-5 rounded-2xl flex items-start gap-4">
+                <div class="text-amber-400 text-2xl pt-1">
+                    <i class="fa-solid fa-lightbulb"></i>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-white text-sm">Dica TRI de Hoje</h4>
+                    <p class="text-slate-300 text-xs mt-1 leading-relaxed">No ENEM, o modelo TRI valoriza a consistência. É melhor acertar todas as questões fáceis e médias do que gabaritar apenas as difíceis errando as básicas. Priorize ler o comando da questão antes do texto base!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABA: MATÉRIAS & CONTEÚDOS -->
+        <section id="tab-materias" class="hidden space-y-6">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                <div>
+                    <h2 class="text-2xl font-bold text-white">Guia de Estudos & Aulas</h2>
+                    <p class="text-slate-400 text-sm">Selecione uma área do conhecimento para estudar teoria e resumos.</p>
+                </div>
+                <div class="flex gap-2 w-full md:w-auto overflow-x-auto pb-2">
+                    <button onclick="filterMateria('todas')" class="px-4 py-2 rounded-xl bg-indigo-600 text-white text-xs font-medium whitespace-nowrap">Todas</button>
+                    <button onclick="filterMateria('mat')" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-medium whitespace-nowrap">Matemática</button>
+                    <button onclick="filterMateria('nat')" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-medium whitespace-nowrap">Natureza</button>
+                    <button onclick="filterMateria('hum')" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-medium whitespace-nowrap">Humanas</button>
+                    <button onclick="filterMateria('lin')" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-medium whitespace-nowrap">Linguagens</button>
+                </div>
+            </div>
+
+            <!-- Lista de Aulas e Resumos -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="lista-materias">
+                <!-- Card 1 -->
+                <div data-cat="mat" class="bg-slate-800/60 border border-slate-700/60 p-5 rounded-2xl hover:border-indigo-500/40 transition flex flex-col justify-between">
+                    <div>
+                        <span class="text-xs bg-indigo-500/10 text-indigo-400 font-semibold px-2.5 py-1 rounded-full border border-indigo-500/20">Matemática</span>
+                        <h3 class="font-bold text-lg text-white mt-3">Razão, Proporção e Porcentagem</h3>
+                        <p class="text-slate-300 text-xs mt-2 leading-relaxed">O tema mais recorrente da matemática do ENEM. Aprenda aumentos/descontos sucessivos, regra de três composta e proporções diretas/inversas.</p>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-slate-700/60 flex justify-between items-center">
+                        <span class="text-xs text-slate-400"><i class="fa-regular fa-clock mr-1"></i> 15 min de leitura</span>
+                        <button onclick="abrirAula('mat1')" class="bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-medium px-4 py-2 rounded-xl transition">Ler Aula</button>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div data-cat="nat" class="bg-slate-800/60 border border-slate-700/60 p-5 rounded-2xl hover:border-emerald-500/40 transition flex flex-col justify-between">
+                    <div>
+                        <span class="text-xs bg-emerald-500/10 text-emerald-400 font-semibold px-2.5 py-1 rounded-full border border-emerald-500/20">Ciências da Natureza</span>
+                        <h3 class="font-bold text-lg text-white mt-3">Ecologia e Impactos Ambientais</h3>
+                        <p class="text-slate-300 text-xs mt-2 leading-relaxed">Fluxo de energia, ciclos biogeoquímicos, biomagnificação trófica, eutrofização, chuva ácida e efeito estufa.</p>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-slate-700/60 flex justify-between items-center">
+                        <span class="text-xs text-slate-400"><i class="fa-regular fa-clock mr-1"></i> 20 min de leitura</span>
+                        <button onclick="abrirAula('nat1')" class="bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-medium px-4 py-2 rounded-xl transition">Ler Aula</button>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div data-cat="hum" class="bg-slate-800/60 border border-slate-700/60 p-5 rounded-2xl hover:border-amber-500/40 transition flex flex-col justify-between">
+                    <div>
+                        <span class="text-xs bg-amber-500/10 text-amber-400 font-semibold px-2.5 py-1 rounded-full border border-amber-500/20">Ciências Humanas</span>
+                        <h3 class="font-bold text-lg text-white mt-3">Brasil República: Da Era Vargas à Ditadura</h3>
+                        <p class="text-slate-300 text-xs mt-2 leading-relaxed">Análise política, social e econômica dos governos populistas, industrialização, o golpe de 1964 e a redemocratização.</p>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-slate-700/60 flex justify-between items-center">
+                        <span class="text-xs text-slate-400"><i class="fa-regular fa-clock mr-1"></i> 25 min de leitura</span>
+                        <button onclick="abrirAula('hum1')" class="bg-amber-600 hover:bg-amber-500 text-white text-xs font-medium px-4 py-2 rounded-xl transition">Ler Aula</button>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div data-cat="lin" class="bg-slate-800/60 border border-slate-700/60 p-5 rounded-2xl hover:border-purple-500/40 transition flex flex-col justify-between">
+                    <div>
+                        <span class="text-xs bg-purple-500/10 text-purple-400 font-semibold px-2.5 py-1 rounded-full border border-purple-500/20">Linguagens</span>
+                        <h3 class="font-bold text-lg text-white mt-3">Funções da Linguagem e Variação Linguística</h3>
+                        <p class="text-slate-300 text-xs mt-2 leading-relaxed">Emotiva, Conativa, Referencial, Metalinguística, Fática e Poética. Preconceito linguístico e normas culta vs. coloquial.</p>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-slate-700/60 flex justify-between items-center">
+                        <span class="text-xs text-slate-400"><i class="fa-regular fa-clock mr-1"></i> 15 min de leitura</span>
+                        <button onclick="abrirAula('lin1')" class="bg-purple-600 hover:bg-purple-500 text-white text-xs font-medium px-4 py-2 rounded-xl transition">Ler Aula</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABA: REDAÇÃO 1000 -->
+        <section id="tab-redacao" class="hidden space-y-6">
+            <div>
+                <h2 class="text-2xl font-bold text-white">Treinador de Redação ENEM</h2>
+                <p class="text-slate-400 text-sm">Escreva seu texto e avalie segundo as 5 competências oficiais do exame.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <!-- Editor de Texto -->
+                <div class="lg:col-span-2 space-y-4">
+                    <div class="bg-slate-800/60 border border-slate-700/60 p-5 rounded-2xl space-y-4">
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Tema da Redação</label>
+                            <input type="text" id="redacao-tema" value="Desafios para a valorização da memória nacional" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-indigo-500">
+                        </div>
+                        <div>
+                            <div class="flex justify-between items-center mb-2">
+                                <label class="text-xs font-semibold text-slate-300 uppercase tracking-wider">Texto Dissertativo-Argumentativo</label>
+                                <div class="flex gap-4 text-xs text-slate-400">
+                                    <span>Palavras: <strong id="contador-palavras" class="text-white">0</strong></span>
+                                    <span>Linhas estimadas: <strong id="contador-linhas" class="text-white">0</strong></span>
+                                </div>
+                            </div>
+                            <textarea id="texto-redacao" oninput="atualizarEstatisticasRedacao()" rows="12" placeholder="Introdução, Desenvolvimento 1, Desenvolvimento 2 e Conclusão com proposta de intervenção..." class="w-full bg-slate-900 border border-slate-700 rounded-xl p-4 text-sm text-white focus:outline-none focus:border-indigo-500 leading-relaxed"></textarea>
+                        </div>
+                        <div class="flex justify-end gap-3">
+                            <button onclick="limparRedacao()" class="px-4 py-2.5 rounded-xl bg-slate-700 hover:bg-slate-600 text-slate-200 text-xs font-medium transition">Limpar</button>
+                            <button onclick="salvarRedacao()" class="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-medium transition flex items-center gap-2"><i class="fa-solid fa-floppy-disk"></i> Salvar Rascunho</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Autoavaliação das 5 Competências -->
+                <div class="bg-slate-800/60 border border-slate-700/60 p-5 rounded-2xl space-y-4">
+                    <div class="flex justify-between items-center pb-3 border-b border-slate-700/60">
+                        <h3 class="font-bold text-white text-sm">Autoavaliação (5 Competências)</h3>
+                        <span class="text-xs bg-indigo-500/20 text-indigo-400 px-2.5 py-1 rounded-full font-bold" id="nota-estimada">Nota: 0 / 1000</span>
+                    </div>
+                    
+                    <div class="space-y-3 text-xs">
+                        <label class="flex items-start gap-3 p-2.5 rounded-xl bg-slate-900/50 border border-slate-700/40 cursor-pointer hover:bg-slate-900 transition">
+                            <input type="checkbox" onchange="calcularNotaRedacao()" class="comp-check mt-0.5 rounded bg-slate-800 border-slate-700 text-indigo-600 focus:ring-indigo-500" value="200">
+                            <div>
+                                <strong class="text-white block">C1: Domínio da Norma Culta</strong>
+                                <span class="text-slate-400">Gramática formal, sem desvios graves.</span>
+                            </div>
+                        </label>
+                        <label class="flex items-start gap-3 p-2.5 rounded-xl bg-slate-900/50 border border-slate-700/40 cursor-pointer hover:bg-slate-900 transition">
+                            <input type="checkbox" onchange="calcularNotaRedacao()" class="comp-check mt-0.5 rounded bg-slate-800 border-slate-700 text-indigo-600 focus:ring-indigo-500" value="200">
+                            <div>
+                                <strong class="text-white block">C2: Compreensão do Tema e Repertório</strong>
+                                <span class="text-slate-400">Argumentos consistentes e repertório sociocultural produtivo.</span>
+                            </div>
+                        </label>
+                        <label class="flex items-start gap-3 p-2.5 rounded-xl bg-slate-900/50 border border-slate-700/40 cursor-pointer hover:bg-slate-900 transition">
+                            <input type="checkbox" onchange="calcularNotaRedacao()" class="comp-check mt-0.5 rounded bg-slate-800 border-slate-700 text-indigo-600 focus:ring-indigo-500" value="200">
+                            <div>
+                                <strong class="text-white block">C3: Seleção e Interpretação de Argumentos</strong>
+                                <span class="text-slate-400">Projeto de texto estratégico e defesa coerente de ponto de vista.</span>
+                            </div>
+                        </label>
+                        <label class="flex items-start gap-3 p-2.5 rounded-xl bg-slate-900/50 border border-slate-700/40 cursor-pointer hover:bg-slate-900 transition">
+                            <input type="checkbox" onchange="calcularNotaRedacao()" class="comp-check mt-0.5 rounded bg-slate-800 border-slate-700 text-indigo-600 focus:ring-indigo-500" value="200">
+                            <div>
+                                <strong class="text-white block">C4: Demonstração de Coesão</strong>
